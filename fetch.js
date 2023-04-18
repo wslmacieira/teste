@@ -12,7 +12,7 @@ export const processRequestFetchAsStream = async (data, filename) => {
     const stream = Readable.from(selectDataAsStream(data))
     await pipeline(
       stream,
-      bufferingObjectStream(200),
+      bufferingObjectStream(50),
       promisesFetchRequest,
       executeFetchRequest,
       async function* (source) {
